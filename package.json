@@ -2,6 +2,7 @@
   "name": "jQuery-canvas-sparkles",
   "version": "0.5.0",
   "description": "A little jQuery plugin for making DOM elements sparkle (uses Canvas)",
+  "homepage": "https://github.com/simeydotme/jQuery-canvas-sparkles",
   "main": "js/jQuery-canvas-sparkles.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,7 +24,7 @@
   "author": "Simon Goellner",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/simeydotme/jQuery-canvas-sparkles//issues"
+    "url": "https://github.com/simeydotme/jQuery-canvas-sparkles/issues"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

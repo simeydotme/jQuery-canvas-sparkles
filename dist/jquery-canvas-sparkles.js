@@ -1,5 +1,11 @@
-/*! jQuery-canvas-sparkles - v0.5.0 - 2014-04-03
-* Copyright (c) 2014 ; Licensed  */
+/*
+ * jQuery-canvas-sparkles - v0.5.0 - 2014-04-03
+ *
+ * https://github.com/simeydotme/jQuery-canvas-sparkles
+ * Copyright (c) 2014 Simon Goellner;
+ *
+ */
+
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
 
