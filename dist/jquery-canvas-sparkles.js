@@ -1,5 +1,5 @@
 /*
- * jQuery-canvas-sparkles - v0.5.0 - 2014-04-03
+ * jQuery-canvas-sparkles - v0.5.0 - 2014-04-04
  *
  * https://github.com/simeydotme/jQuery-canvas-sparkles
  * Copyright (c) 2014 Simon Goellner;
@@ -71,7 +71,8 @@ jQuery(document).ready(function($) {
                 overlap: 0,
                 speed: 1,
                 minSize: 4,
-                maxSize: 7
+                maxSize: 7,
+                direction: "both"
 
             }, options);
 
@@ -80,14 +81,10 @@ jQuery(document).ready(function($) {
             var sparkle = new Sparkle($this, settings);
 
             // bind mouseover/focus/mouseout/blur events to the element
-            // with a snamespace for easy unbinding. We set the width/height of the
-            // canvas upon mouseover because of document-load issues with fonts
-            // and images and other things changing dimentions of elements.
+            // with a namespace for easy unbinding.
             $this.on({
                 "mouseover.sparkle focus.sparkle": function() {
-                    sparkle.canvas.width = $this.outerWidth() + (settings.overlap * 2);
-                    sparkle.canvas.height = $this.outerHeight() + (settings.overlap * 2);
-                    sparkle.over();
+                    sparkle.over($this);
                 },
                 "mouseout.sparkle blur.sparkle": function() {
                     sparkle.out();
@@ -121,7 +118,6 @@ jQuery(document).ready(function($) {
 
             };
 
-
             // set up the canvas element as a document fragment
             // and give it a class and some css amd append it
             // to our parent element.
@@ -131,7 +127,18 @@ jQuery(document).ready(function($) {
                     .css( cssOpts )
                     .hide();
 
-            this.$canvas.appendTo( $parent );
+            // check if the DOM element is a singleton, ie it
+            // doesnt have a closing tag... we can't put the canvas
+            // inside an <img> for example.
+            var singletons = "IMG|BR|HR|INPUT";
+            var regexp = "\\b"+ $parent[0].nodeName +"\\b";
+            this.isSingleton = new RegExp(regexp).test(singletons);
+
+            if( this.isSingleton ) {
+                this.$canvas.insertAfter( $parent );
+            } else {
+                this.$canvas.appendTo( $parent );
+            }
 
             // create our canvas context and save it for
             // future use with this.canvas
@@ -191,6 +198,14 @@ jQuery(document).ready(function($) {
 
                 }
 
+                var yDelta = Math.floor(Math.random() * 1000) - 500;
+
+                if( this.options.direction === "down" ) {
+                    yDelta = Math.floor(Math.random() * 500) - 550;
+                } else if ( this.options.direction === "up" ) {
+                    yDelta = Math.floor(Math.random() * 500) + 50;
+                }
+
                 // create a particle with random position,
                 // random sprite start point, delta, size and a defined color.
                 tempicles[i] = {
@@ -201,7 +216,7 @@ jQuery(document).ready(function($) {
                     style: this.spriteCoords[Math.floor(Math.random() * this.spriteCoords.length)],
                     delta: {
                         x: Math.floor(Math.random() * 1000) - 500,
-                        y: Math.floor(Math.random() * 1000) - 500
+                        y: yDelta
                     },
                     size: this.randomParticleSize(),
                     color: color
@@ -306,7 +321,7 @@ jQuery(document).ready(function($) {
                     // if we're trying to fade out fast because
                     // of a _out_ event, increase opacity delta
                     if (_this.fade) {
-                        p.opacity -= 0.02;
+                        p.opacity -= 0.035;
                     } else {
                         p.opacity -= 0.005;
                     }
@@ -329,7 +344,7 @@ jQuery(document).ready(function($) {
                 _this.draw(time);
 
                 // only _stop_ the animation after we've finished
-                // fading out
+                // fading out and we also hide the canvas.
                 if (_this.fade) {
                     _this.fadeCount -= 1;
                     if (_this.fadeCount < 0) {
@@ -346,22 +361,42 @@ jQuery(document).ready(function($) {
 
         },
 
-        "cancel": function() {
+        "over": function($parent) {
 
-            this.fadeCount = 100;
+            // We set the width/height of the canvas upon mouseover 
+            // because of document-load issues with fonts and images and 
+            // other things changing dimentions of elements.
+            this.canvas.width = $parent.outerWidth() + (this.options.overlap * 2);
+            this.canvas.height = $parent.outerHeight() + (this.options.overlap * 2);
 
-        },
+            // also if the base element is a singleton then we re-position the
+            // canvas. we don't want the canvas to be in the wrong position if
+            // something has moved.
+            if( this.isSingleton ) {
+                this.$canvas.css({
+                    top: $parent.position().top - this.options.overlap ,
+                    left: $parent.position().left - this.options.overlap
+                });
+            }
 
-        "over": function() {
-
+            // we hide/show the canvas element on hover
+            // just to make sure it has it's garbage collected
             this.$canvas.show();
 
+            // make sure the animation frame was cancelled, or we
+            // get multiple update/draw loops happening (BAD) .. this
+            // can happen because we let the animation loop continue
+            // while it fades out.
             window.cancelAnimationFrame(this.anim);
 
+            // randomize the opacity every time we over the animation
+            // this stops our particles all being at same opacity
+            // after the fadeout happens.
             for (var i = 0; i < this.options.count; i++) {
                 this.particles[i].opacity = Math.random();
             }
 
+            // run our update loop.
             this.fade = false;
             this.update();
 
@@ -369,8 +404,11 @@ jQuery(document).ready(function($) {
 
         "out": function() {
 
+            // here we just tell the update loop that
+            // we want to fade out, and that we want to
+            // take 100 frames to fade out
             this.fade = true;
-            this.cancel();
+            this.fadeCount = 100;
 
         },
 
