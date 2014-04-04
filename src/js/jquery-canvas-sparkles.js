@@ -49,13 +49,6 @@ jQuery(document).ready(function($) {
 
             var $this = $(v);
 
-            // we need to give the element position if it doesn't
-            // already have it, so that we can put the canvas right
-            // over the top.
-            if ($this.css("position") === "static") {
-                $this.css("position", "relative");
-            }
-
             var settings = $.extend({
 
                 color: "#FFFFFF",
@@ -110,6 +103,13 @@ jQuery(document).ready(function($) {
 
             };
 
+            // we need to give the element position if it doesn't
+            // already have it, so that we can put the canvas right
+            // over the top.
+            if ($parent.css("position") === "static") {
+                $parent.css("position", "relative");
+            }
+
             // set up the canvas element as a document fragment
             // and give it a class and some css amd append it
             // to our parent element.
@@ -118,6 +118,13 @@ jQuery(document).ready(function($) {
                     .addClass("sparkle-canvas")
                     .css( cssOpts )
                     .hide();
+
+            // check if the parent has a z-index, if it does
+            // then make the canvas 1 place higher than it!
+            if ($parent.css("z-index") !== "auto") {
+                var zdex = parseInt($parent.css("z-index"),10);
+                this.$canvas.css("z-index", zdex+1);
+            }
 
             // check if the DOM element is a singleton, ie it
             // doesnt have a closing tag... we can't put the canvas
