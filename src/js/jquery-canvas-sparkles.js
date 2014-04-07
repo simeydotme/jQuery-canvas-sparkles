@@ -169,6 +169,12 @@ jQuery(document).ready(function($) {
 
         },
 
+        "randomHexColor": function() {
+
+            return '#' + ('000000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6);
+
+        },
+
         "createSparkles": function(w, h) {
 
             // temporarily store our created particles
@@ -184,7 +190,7 @@ jQuery(document).ready(function($) {
 
                     // if we chose rainbow, give us much random so color very blergh
                     // http://www.paulirish.com/2009/random-hex-color-code-snippets/
-                    color = '#' + ('000000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6);
+                    color = randomHexColor();
 
                 } else if ($.type(this.options.color) === "array") {
 
