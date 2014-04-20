@@ -136,6 +136,11 @@ Desktop.ini
 ############
 node_modules/
 
+############
+## Bower
+############
+bower_components/
+
 
 
 #############

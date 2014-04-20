@@ -1,0 +1,42 @@
+{
+  "name": "jQuery-canvas-sparkles",
+  "description": "A little jQuery plugin for making DOM elements sparkle (uses Canvas)",
+  "version": "0.6.1",
+  "main": "dist/jQuery-canvas-sparkles.js",
+  "homepage": "https://github.com/simeydotme/jQuery-canvas-sparkles",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simeydotme/jQuery-canvas-sparkles.git"
+  },
+  "authors": [
+    "Simon Goellner <simey.me@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "jquery",
+    "canvas",
+    "sparkle",
+    "magic",
+    "fairy",
+    "dust",
+    "twinkle",
+    "javascript",
+    "animation",
+    "stars"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "demo.html",
+    "src",
+    "Gruntfile.js"
+  ],
+  "dependencies": {
+    "jquery": ">=2.0.0",
+    "requestAnimationFrame-polyfill": "*"
+  }
+}
