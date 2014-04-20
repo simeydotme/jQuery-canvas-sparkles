@@ -37,6 +37,7 @@
   ],
   "dependencies": {
     "jquery": ">=2.0.0",
-    "requestAnimationFrame-polyfill": "*"
+    "requestAnimationFrame-polyfill": "*",
+    "modernizr": "~2.7.2"
   }
 }

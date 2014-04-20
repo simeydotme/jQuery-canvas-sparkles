@@ -1,0 +1,31 @@
+{
+  "name": "requestAnimationFrame-polyfill",
+  "homepage": "https://github.com/arcade/requestAnimationFrame-polyfill",
+  "authors": [
+    "Alex Bularca <alexandru.bularca@gmail.com>"
+  ],
+  "description": "The requestAnimationFrame pollyfill by Paul Irish and Erik Möller",
+  "main": "requestAnimationFrame.js",
+  "keywords": [
+    "requestAnimationFrame",
+    "raf"
+  ],
+  "license": "BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "3b404f7a6a",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "3b404f7a6a90734a50763f3a0cfae286d1242fcf"
+  },
+  "_source": "git://github.com/arcade/requestAnimationFrame-polyfill.git",
+  "_target": "*",
+  "_originalSource": "requestAnimationFrame-polyfill",
+  "_direct": true
+}
