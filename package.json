@@ -1,7 +1,7 @@
 {
     "name": "jQuery-canvas-sparkles",
     "description": "A little jQuery plugin for making DOM elements sparkle (uses Canvas)",
-    "version": "0.6.1",
+    "version": "0.6.2",
     "main": "dist/jQuery-canvas-sparkles.js",
     "homepage": "https://github.com/simeydotme/jQuery-canvas-sparkles",
     "repository": {
