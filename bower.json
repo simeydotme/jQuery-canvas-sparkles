@@ -32,11 +32,12 @@
     "test",
     "tests",
     "demo.html",
+    "index.html",
     "src",
     "Gruntfile.js"
   ],
   "dependencies": {
-    "jquery": ">=2.0.0",
+    "jquery": ">=1.9.2",
     "requestAnimationFrame-polyfill": "*"
   }
 }
