@@ -104,7 +104,7 @@ $(".element3").sparkle({
 });
 ```
 
-####
+-----
 
 ###notes
 - looks sexy
