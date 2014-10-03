@@ -4,7 +4,20 @@ jQuery-canvas-sparkles
 A little jQuery plugin for making DOM elements sparkle (uses Canvas)  
 [Temporary demo site up](http://simeydotme.github.io/jQuery-canvas-sparkles/)
 
-###example
+###Install
+You may download the files in the `/dist/` folder.
+
+------------------------------------  
+  
+###Requirements:
+  - jQuery (1.9+)
+  
+------------------------------------  
+  
+###Installation:   
+Include the plugin javascript file __after__ jQuery.
+
+###Example
 ![Example of the Canvas Sparkles Plugin in use](http://files.simey.me/sparkles.gif "Canvas Soarkles")
 
 ###Usage
