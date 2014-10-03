@@ -26,7 +26,7 @@ $(".element").sparkle({
 });
 ```
 
-####color
+####Color
 Accepts a HEX string, or `"rainbow"` or an array of HEX strings:
 ```js
 $(".element").sparkle({
