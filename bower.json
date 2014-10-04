@@ -24,7 +24,7 @@
     "animation",
     "stars"
   ],
-  "private": false,
+  
   "ignore": [
     "**/.*",
     "node_modules",
