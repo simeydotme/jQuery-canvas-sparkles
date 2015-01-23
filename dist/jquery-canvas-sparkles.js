@@ -1,8 +1,8 @@
-/*
- * jQuery-canvas-sparkles - v0.5.0 - 2014-04-20
+/*!
+ * jquery-canvas-sparkles - v1.0.1 - 2015-01-23
  *
  * https://github.com/simeydotme/jQuery-canvas-sparkles
- * Copyright (c) 2014 Simon Goellner;
+ * Copyright (c) 2015 Simon Goellner;
  *
  */
 
@@ -36,10 +36,20 @@ $(function() {
             // with a namespace for easy unbinding.
             $this.on({
                 "mouseover.sparkle focus.sparkle": function() {
-                    sparkle.over($this);
+                    $this.trigger("start.sparkle");
                 },
                 "mouseout.sparkle blur.sparkle": function() {
-                    sparkle.out();
+                    $this.trigger("stop.sparkle");
+                },
+                "start.sparkle": function() {
+                    sparkle.start($this);
+                },
+                "stop.sparkle": function() {
+                    sparkle.stop();
+                },
+                "resize.sparkle": function() {
+                    sparkle.resize($this);
+                    sparkle.setParticles();
                 }
             });
 
@@ -117,13 +127,12 @@ $(function() {
             this.sprite.src = this.datauri;
             this.spriteCoords = [0, 6, 13, 20];
 
-            // set the canvas with and height using the parent
-            // with and height set in the options
+            // set the canvas width and height using the parent
+            // width and height set in the options
             this.canvas.width = $parent.outerWidth()*1.2;
             this.canvas.height = $parent.outerHeight()*1.2;
 
-            // store our particles into an object for future use
-            this.particles = this.createSparkles(this.canvas.width, this.canvas.height);
+            this.setParticles();
 
             this.anim = null;
             this.fade = false;
@@ -139,6 +148,13 @@ $(function() {
         "randomHexColor": function() {
 
             return '#' + ('000000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6);
+
+        },
+
+        "setParticles": function() {
+
+            // store our particles into an object for future use
+            this.particles = this.createSparkles(this.canvas.width, this.canvas.height);
 
         },
 
@@ -333,7 +349,7 @@ $(function() {
 
         },
 
-        "over": function($parent) {
+        "resize": function($parent) {
 
             // We set the width/height of the canvas upon mouseover 
             // because of document-load issues with fonts and images and 
@@ -346,10 +362,16 @@ $(function() {
             // something has moved.
             if( this.isSingleton ) {
                 this.$canvas.css({
-                    top: $parent.position().top - this.options.overlap ,
+                    top: $parent.position().top - this.options.overlap,
                     left: $parent.position().left - this.options.overlap
                 });
             }
+
+        },
+
+        "start": function($parent) {
+
+            this.resize($parent);
 
             // we hide/show the canvas element on hover
             // just to make sure it has it's garbage collected
@@ -374,7 +396,7 @@ $(function() {
 
         },
 
-        "out": function() {
+        "stop": function() {
 
             // here we just tell the update loop that
             // we want to fade out, and that we want to
