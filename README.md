@@ -104,6 +104,50 @@ $(".element3").sparkle({
 });
 ```
 
+
+###Events
+We can trigger the start and stop of the sparkles, as well as reset the positions with events.
+
+####start.sparkle
+triggering the start event will activate the sparkles
+####stop.sparkle
+triggering the stop event will fade the sparkles out and turn them off
+####resize.sparkle
+triggering the resize event will reset the positions of the sparkles and resize the canvas to match it's container.
+
+```js
+// first we need an element with sparkles
+$("header").sparkle();
+
+// here we can remove the default mouse/keyboard triggers for sparkles,
+// perhaps we don't want them to trigger on interaction
+$("header")
+    .off("mouseover.sparkle")
+    .off("mouseout.sparkle")
+    .off("focus.sparkle")
+    .off("blur.sparkle")
+
+// we can also trigger the start/stop events on the element
+// which has the sparkles bound to it!
+$("header")
+    .trigger("start.sparkle")
+    .on("click", function() {
+        $(this).trigger("stop.sparkle");
+    });
+    
+// it's also possible to resize teh canvas and reposition 
+// the sparkles whenever the browser is resized...
+var timer;
+$(window).on("resize", function(){
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+        $("header").trigger("resize.sparkle");
+    },200);
+});
+```
+
+
+
 -----
 
 ###notes
