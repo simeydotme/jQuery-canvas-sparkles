@@ -63,11 +63,11 @@ $(function() {
 
         "init": function($parent) {
 
+            var relativeOverlap = 0 - parseInt(this.options.overlap, 10);
             var cssOpts = {
-
                 position: "absolute",
-                top: "-" + this.options.overlap + "px",
-                left: "-" + this.options.overlap + "px",
+                top: relativeOverlap.toString() + "px",
+                left: relativeOverlap.toString() + "px",
                 "pointer-events": "none"
 
             };
