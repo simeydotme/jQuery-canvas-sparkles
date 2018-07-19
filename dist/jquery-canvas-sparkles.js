@@ -1,12 +1,12 @@
 /*!
- * jquery-canvas-sparkles - v1.0.1 - 2015-01-23
+ * jquery-canvas-sparkles - v1.1.0 - 2018-07-20
  *
  * https://github.com/simeydotme/jQuery-canvas-sparkles
- * Copyright (c) 2015 Simon Goellner;
+ * Copyright (c) 2018 Simon Goellner;
  *
  */
 
-$(function() {
+(function($) {
 
     "use strict";
 
@@ -71,11 +71,11 @@ $(function() {
 
         "init": function($parent) {
 
+            var relativeOverlap = 0 - parseInt(this.options.overlap, 10);
             var cssOpts = {
-
                 position: "absolute",
-                top: "-" + this.options.overlap + "px",
-                left: "-" + this.options.overlap + "px",
+                top: relativeOverlap.toString() + "px",
+                left: relativeOverlap.toString() + "px",
                 "pointer-events": "none"
 
             };
@@ -411,4 +411,4 @@ $(function() {
 
     };
 
-});
+}(jQuery));
