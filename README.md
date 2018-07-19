@@ -1,31 +1,30 @@
-jQuery-canvas-sparkles
-======================
+# jQuery-canvas-sparkles
 
 A little jQuery plugin for making DOM elements sparkle (uses Canvas)  
-[Temporary demo site up](http://simeydotme.github.io/jQuery-canvas-sparkles/)
+[Demo Site](http://simeydotme.github.io/jQuery-canvas-sparkles/)
 
-###Install
+### Install
 You may download the files in the `/dist/` folder.
 
 ------------------------------------  
   
-###Requirements:
+### Requirements:
   - jQuery (1.9+)
   
 ------------------------------------  
   
-###Installation:   
+### Installation:   
 Include the plugin javascript file __after__ jQuery.
 
-###Example
+### Example
 ![Example of the Canvas Sparkles Plugin in use](http://files.simey.me/sparkles.gif "Canvas Soarkles")
 
-###Usage
+### Usage
 ```js
 $(".element").sparkle();
 ```
 
-###Options
+### Options
 You can pass an options object to make this interesting like so:
 ```js
 $(".element").sparkle({
@@ -39,7 +38,7 @@ $(".element").sparkle({
 });
 ```
 
-####Color
+#### `color`
 Accepts a HEX string, or `"rainbow"` or an array of HEX strings:
 ```js
 $(".element").sparkle({
@@ -55,7 +54,7 @@ $(".element3").sparkle({
 });
 ```
 
-####Count
+#### `count`
 Accepts a number to determine how many sparkles will be on the element at a time. Larger elements need more sparkles, but after a few hundred things can bog down.
 ```js
 $(".element").sparkle({
@@ -63,7 +62,7 @@ $(".element").sparkle({
 });
 ```
 
-####Overlap
+#### `overlap`
 Accepts a nummber which tells the canvas how far over the edge of it's container it should overlap in pixels.
 ```js
 $(".element").sparkle({
@@ -71,7 +70,7 @@ $(".element").sparkle({
 });
 ```
 
-####Speed
+#### `speed`
 Accepts a floating point number to set the speed multiplier, you may need to experiment with this
 ```js
 $(".element").sparkle({
@@ -79,7 +78,7 @@ $(".element").sparkle({
 });
 ```
 
-####Size
+#### `size`
 Accepts a number for both min/max to set the size in pixels of the sparkles. Sizes are randomized between min and max.
 ```js
 $(".element").sparkle({
@@ -88,7 +87,7 @@ $(".element").sparkle({
 });
 ```
 
-####Direction
+#### `direction`
 Accepts a string of `"up"`, `"down"` or `"both"` to set which direction the sparkles will travel in.
 ```js
 $(".element").sparkle({
@@ -105,14 +104,14 @@ $(".element3").sparkle({
 ```
 
 
-###Events
+### Events
 We can trigger the start and stop of the sparkles, as well as reset the positions with events.
 
-####start.sparkle
+#### `start.sparkle`
 triggering the start event will activate the sparkles
-####stop.sparkle
+#### `stop.sparkle`
 triggering the stop event will fade the sparkles out and turn them off
-####resize.sparkle
+#### `resize.sparkle`
 triggering the resize event will reset the positions of the sparkles and resize the canvas to match it's container.
 
 ```js
@@ -150,7 +149,7 @@ $(window).on("resize", function(){
 
 -----
 
-###notes
+### notes
 - looks sexy
 - straight out of 90's DHTML days, but with canvas!!!
 - Wont work < IE9
